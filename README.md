@@ -1,9 +1,46 @@
-# Text to Visual Narratives
+# Story Block
 
-Welcome to Text to Visual Narratives, an extraordinary generative AI project that brings your stories to life through stunning visuals. By leveraging the power of OpenAI for text generation and Stable Diffusion with LORA for image generation, this project transforms your prompts into captivating narratives presented in a video format.
+Story Block is an open-source project that utilizes generative AI to transform text into visual narratives. By combining OpenAI's text generation model and Stable Diffusion(Automatic1111) with LORA for image synthesis, this project allows users to explore new frontiers of storytelling.
 
-Harnessing the capabilities of OpenAI's text generation model and the cutting-edge Stable Diffusion with LORA for image synthesis, Text to Visual Narratives empowers you to explore uncharted territories of storytelling. Simply provide a prompt, and watch in awe as the project crafts a unique story accompanied by vivid visuals that breathe life into your words.
+## Features
 
-This readme will guide you through the installation process, explain the usage of the project, and provide customization options to tailor your experience. We encourage you to experiment, unleash your imagination, and witness the magic of your stories transforming into captivating visual journeys.
+- Transforms text prompts into captivating video narratives with vivid visuals
+- Uses cutting-edge AI technology for text, image, video  generation like OpenAI , Automatic1111 and ElevenLabs
+- Customizable options to tailor user experience
 
-Let your creativity take flight with Text to Visual Narratives and immerse yourself in the realm of AI-generated storytelling like never before.
+## Installation
+
+To install Story Block, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Run the `main.ipynb` notebook
+
+## Usage
+
+To use Story Block, simply provide a text prompt and watch as the project generates a unique story accompanied by stunning visuals. Users can customize their experience by adjusting various parameters such as image style and animation speed.
+
+### **Todo list**
+
+- [x]  complete video compilation pipeline
+- [x]  add stable diffusion support for image generation
+- [ ]  add automatic1111 APIs
+- [ ]  Add support for flashcards
+- [ ]  Convert it into a Python file
+- [ ]  Add Gradio
+- [ ]  Add Colab notebook
+
+## Contributing
+
+We welcome contributions from the community to help improve Story Block. To contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch and make your changes.
+3. Submit a pull request.
+
+## License
+
+Story Block is licensed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+If you have any questions or comments about Story Block, please reach out adithyaskolavi@gmail.com
