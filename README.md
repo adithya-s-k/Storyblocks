@@ -30,11 +30,12 @@ To use Story Block, simply provide a text prompt and watch as the project genera
 - [x]  complete video compilation pipeline
 - [x]  add stable diffusion support for image generation
 - [x]  add automatic1111 APIs
-- [ ]  Add Gradio
-- [ ]  add diffusechain
-- [ ]  Add support for flashcards
-- [ ]  Convert it into a Python file
+- [x]  add diffusechain
+- [x]  Convert it into a Python file
 - [ ]  Add Colab notebook
+- [ ]  Add Gradio
+- [ ]  Add support for flashcards
+- [ ]  prompts optimization
 
 ## Contributing
 
