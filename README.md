@@ -32,8 +32,8 @@ To use Story Block, simply provide a text prompt and watch as the project genera
 - [x]  add automatic1111 APIs
 - [x]  add diffusechain
 - [x]  Convert it into a Python file
-- [ ]  Add Colab notebook
 - [ ]  Add Gradio
+- [ ]  Add Colab notebook
 - [ ]  Add support for flashcards
 - [ ]  prompts optimization
 
