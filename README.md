@@ -2,6 +2,8 @@
 
 Story Block is an open-source project that utilizes generative AI to transform text into visual narratives. By combining OpenAI's text generation model and Stable Diffusion(Automatic1111) with LORA for image synthesis, this project allows users to explore new frontiers of storytelling.
 
+## [One Click Run Google Colab](https://colab.research.google.com/drive/1kq-Gv_9WAqQ1pJLUz4BhpzkLNfPOWNwi#scrollTo=xoEbCVcp3Kzw)
+
 ## Example
 
 Input Prompt : Boy going to the moon
