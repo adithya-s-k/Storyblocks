@@ -2,7 +2,7 @@ import gradio as gr
 import time
 from storyblocks.config.api_db import get_api_key, set_api_key
 from storyblocks.api_utils.eleven_api import getCharactersFromKey
-from gui.story_automation_ui import voiceChoice, getElevenlabsVoices
+from gui.story_generation_ui import voiceChoice, getElevenlabsVoices
 def onShow(button_text):
     if button_text == "Show":
         return gr.Textbox.update(type="text"), gr.Button.update(value="Hide")
@@ -21,11 +21,10 @@ def saveKeys(openai_key, eleven_key, a1111):
         set_api_key("A1111", a1111)
     if (get_api_key('ELEVEN LABS') != eleven_key):
         set_api_key("ELEVEN LABS", eleven_key)
-        new_eleven_voices = getElevenlabsVoices()
         return  gr.Textbox.update(value=openai_key),\
                 gr.Textbox.update(value=eleven_key),\
                 gr.Textbox.update(value=a1111),\
-                gr.Radio.update(choices=new_eleven_voices)
+                
 
     return  gr.Textbox.update(value=openai_key),\
             gr.Textbox.update(value=eleven_key),\
@@ -60,7 +59,7 @@ def create_config_ui():
                 def back_to_normal():
                     time.sleep(3)
                     return gr.Button.update(value="save")
-                save_button.click(verify_eleven_key, [eleven_labs_textbox, eleven_characters_remaining], [eleven_characters_remaining]).success(saveKeys, [openai_textbox, eleven_labs_textbox, automatic1111_textbox], [openai_textbox, eleven_labs_textbox, automatic1111_textbox, voiceChoice])
+                save_button.click(verify_eleven_key, [eleven_labs_textbox, eleven_characters_remaining], [eleven_characters_remaining]).success(saveKeys, [openai_textbox, eleven_labs_textbox, automatic1111_textbox], [openai_textbox, eleven_labs_textbox, automatic1111_textbox])
                 save_button.click(lambda _ : gr.Button.update(value="Keys Saved !"), [], [save_button])
                 save_button.click(back_to_normal, [], [save_button])
     return config_ui
