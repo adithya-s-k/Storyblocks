@@ -1,6 +1,9 @@
 import gradio as gr
 from gui.config_ui import create_config_ui
-from gui.content_automation_ui import create_content_automation
+from gui.project_selection_ui import select_project_ui
+from gui.story_generation_ui import story_generation_ui
+from gui.voice_generation_ui import video_generation_ui
+from gui.image_generation_ui import image_generation_ui
 max_choices = 20
 ui_asset_dataframe = gr.Dataframe(interactive=False)
 LOGO_PATH = "http://localhost:31415/file=public/logo.png"
@@ -18,7 +21,10 @@ def run_app(colab=False):
                 </div>
                 </div
             ''')
-        content_automation = create_content_automation(StoryBlocksUI)
+        project_selection = select_project_ui(StoryBlocksUI)
+        story_gen = story_generation_ui(StoryBlocksUI)
+        voice_gen = video_generation_ui(StoryBlocksUI)
+        image_gen = image_generation_ui(StoryBlocksUI)
         config_ui = create_config_ui()
     StoryBlocksUI.queue(concurrency_count=5, max_size=20).launch(server_port=4000, height=1000, share=colab)
 if __name__ == "__main__":
