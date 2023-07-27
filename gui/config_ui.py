@@ -2,7 +2,6 @@ import gradio as gr
 import time
 from storyblocks.config.api_db import get_api_key, set_api_key
 from storyblocks.api_utils.eleven_api import getCharactersFromKey
-from gui.story_generation_ui import voiceChoice, getElevenlabsVoices
 def onShow(button_text):
     if button_text == "Show":
         return gr.Textbox.update(type="text"), gr.Button.update(value="Hide")
@@ -38,6 +37,7 @@ def getElevenRemaining(key):
         except Exception as e:
             return e.args[0]
     return ""
+
 def create_config_ui():
     with gr.Tab("Config") as config_ui:
         with gr.Row():
