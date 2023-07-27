@@ -1,7 +1,5 @@
 import traceback
 import gradio as gr
-from storyblocks.config.api_db import get_api_key
-from storyblocks.api_utils.eleven_api import getVoices
 from storyblocks.config.languages import Language
 import time
 
@@ -19,14 +17,6 @@ style='background: #3f4039; color: #fff; border: none; padding: 10px 20px;
 border-radius: 5px; cursor: pointer; text-decoration: none;'>Get Help on Discord</a>
 </div>"""
 
-def getElevenlabsVoices():
-    api_key = get_api_key("ELEVEN LABS")
-    voices = list(reversed(getVoices(api_key).keys()))
-    return voices
-
-voiceChoice = gr.Radio(getElevenlabsVoices(), label="Elevenlabs voice", value="Antoni", interactive=True)
-
-
 def story_generation_ui(StoryBlocksUI: gr.Blocks):
     with gr.Tab("Generate Story") as  story_generation:
         gr.Markdown("## Generate Story") 
@@ -39,5 +29,5 @@ def story_generation_ui(StoryBlocksUI: gr.Blocks):
                 genre = gr.Textbox(label="Genre", placeholder="Write a genre for your story", interactive=True, visible=True)
                 duration = gr.Slider(minimum=0, maximum=2, step=.2, label="Duration in minutes", value=2, interactive=True, visible=True)
                 language = gr.Radio(language_choices, label="Language", value="ENGLISH")
-                createButton = gr.Button(label="Generate Story", size="sm", type="submit", interactive=True, visible=True)
+                button = gr.Button("Generate Story", size="sm", interactive=True, visible=True)
     return story_generation
