@@ -29,6 +29,8 @@ To use Story Block, simply provide a text prompt and watch as the project genera
 -   [x] Convert it into a Python file
 -   [x] Add Colab notebook
 -   [ ] Add Gradio
+-   [ ] Add proper Subtitles support
+-   [ ] Add Support for other image generation models (from Stability AI)
 -   [ ] Add support for flashcards
 -   [ ] prompts optimization
 
