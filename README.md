@@ -28,11 +28,13 @@ To use Story Block, simply provide a text prompt and watch as the project genera
 -   [x] add diffusechain
 -   [x] Convert it into a Python file
 -   [x] Add Colab notebook
--   [ ] Add Gradio
+-   [x] Add Gradio
+-   [ ] Implement Story Generation on Gradio
 -   [ ] Add proper Subtitles support
 -   [ ] Add Support for other image generation models (from Stability AI)
 -   [ ] Add support for flashcards
 -   [ ] prompts optimization
+-   [ ]Become Automatic1111 agnostic
 
 ## 🌟 Show Your Support
 
