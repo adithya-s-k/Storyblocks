@@ -7,4 +7,3 @@ def get_api_key(name):
 
 def set_api_key(name, value):
     return API_KEY_DOC_MANAGER._save({name: value})
-    
