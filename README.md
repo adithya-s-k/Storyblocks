@@ -15,6 +15,8 @@ Input Prompt : Boy going to the moon
 
 https://github.com/adithya-s-k/Storyblocks/assets/27956426/9ba3e564-a78b-47a7-a845-6f5155d44fbd
 
+https://github.com/adithya-s-k/Storyblocks/assets/27956426/17864858-0eea-49a7-9299-d36f6bf6a01a
+
 ## Features
 
 -   Transforms text prompts into captivating video narratives with vivid visuals
@@ -34,6 +36,7 @@ To use Story Blocks, simply provide a text prompt and watch as the project gener
 -   [x] Convert it into a Python file
 -   [x] Add Colab notebook
 -   [x] Add Gradio
+-   [x] Project Creation and Section
 -   [ ] Implement Story Generation on Gradio
 -   [ ] Add proper Subtitles support
 -   [ ] Add Support for other image generation models (from Stability AI)
