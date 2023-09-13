@@ -1,6 +1,6 @@
-# Story Block
+# Story Blocks
 
-Story Block is an open-source project that utilizes generative AI to transform text into visual narratives. By combining OpenAI's text generation model and Stable Diffusion(Automatic1111) with LORA for image synthesis, this project allows users to explore new frontiers of storytelling.
+Story Blocks is an open-source project that utilizes generative AI to transform text into visual narratives. By combining OpenAI's text generation model and Stable Diffusion(Automatic1111) with LORA for image synthesis, this project allows users to explore new frontiers of storytelling.
 
 ## [One Click Run Google Colab](https://colab.research.google.com/drive/1kq-Gv_9WAqQ1pJLUz4BhpzkLNfPOWNwi#scrollTo=xoEbCVcp3Kzw)
 
@@ -20,7 +20,7 @@ https://github.com/adithya-s-k/Storyblocks/assets/27956426/17864858-0eea-49a7-92
 
 ## Usage
 
-To use Story Block, simply provide a text prompt and watch as the project generates a unique story accompanied by stunning visuals. Users can customize their experience by adjusting various parameters such as image style and animation speed.
+To use Story Blocks, simply provide a text prompt and watch as the project generates a unique story accompanied by stunning visuals. Users can customize their experience by adjusting various parameters such as image style and animation speed.
 
 ### **Todo list**
 
@@ -140,7 +140,7 @@ Once you have successfully installed ImageMagick, FFmpeg, and the Python depende
 
 ## Contributing
 
-We welcome contributions from the community to help improve Story Block. To contribute, please follow these steps:
+We welcome contributions from the community to help improve Story Blocks. To contribute, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch and make your changes.
@@ -164,11 +164,11 @@ These technologies work together to provide a seamless and efficient experience 
 
 ## License
 
-Story Block is licensed under the MIT License. See `LICENSE` for more information.
+Story Blocks is licensed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Stay updated with the latest happenings, announcements, and insights about Story Block by checking out my Twitter accounts. Engage in fascinating dialogues, access the latest news about the project, and gain insights from the person behind Story Block.
+Stay updated with the latest happenings, announcements, and insights about Story Blocks by checking out my Twitter accounts. Engage in fascinating dialogues, access the latest news about the project, and gain insights from the person behind Story Blocks.
 
 -   **Developer**: [@adithya-s-k](https://twitter.com/adithya_s_k).
 
