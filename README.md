@@ -6,8 +6,8 @@ Story Blocks is an open-source project that utilizes generative AI to transform 
 
 | Colab Page                                                                                                              | Function                          |
 | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/) | Run Story blocks in One Click     |
-| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/) | Run Automatic1111 Web UI with API |
+| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adithya-s-k/Storyblocks/blob/main/Storyblocks.ipynb) | Run Story blocks in One Click     |
+| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adithya-s-k/Storyblocks/blob/main/Storyblocks_Automatic1111.ipynb) | Run Automatic1111 Web UI with API |
 
 ## Example
 
