@@ -2,11 +2,11 @@
 
 Story Blocks is an open-source project that utilizes generative AI to transform text into visual narratives. By combining OpenAI's text generation model and Stable Diffusion(Automatic1111) with LORA for image synthesis, this project allows users to explore new frontiers of storytelling.
 
-## [One Click Run Google Colab](https://colab.research.google.com/drive/1kq-Gv_9WAqQ1pJLUz4BhpzkLNfPOWNwi#scrollTo=xoEbCVcp3Kzw)
+## [One Click Run Google Colab](https://colab.research.google.com/github/adithya-s-k/Storyblocks/blob/main/Storyblocks.ipynb)
 
-| Colab Page                                                                                                              | Function                          |
-| ----------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adithya-s-k/Storyblocks/blob/main/Storyblocks.ipynb) | Run Story blocks in One Click     |
+| Colab Page                                                                                                                                                                               | Function                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adithya-s-k/Storyblocks/blob/main/Storyblocks.ipynb)               | Run Story blocks in One Click     |
 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adithya-s-k/Storyblocks/blob/main/Storyblocks_Automatic1111.ipynb) | Run Automatic1111 Web UI with API |
 
 ## Example
