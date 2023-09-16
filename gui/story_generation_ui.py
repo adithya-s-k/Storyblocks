@@ -25,12 +25,11 @@ border-radius: 5px; cursor: pointer; text-decoration: none;'>Get Help on Discord
 </div>"""
 
 
-def generate_story(prompt, genre, duration):
+def generate_story(prompt, genre, number_of_words):
     embedHTML = '<div style="display: flex; overflow-x: auto; gap: 20px;">'
     try:
         # Multiply the duration by 150 to get the number of words. Average reading speed is 150 words per minute.
-        number_of_words = duration * 150
-        
+        number_of_words = int(number_of_words)
         #using langchain to generate the story
         chat = ChatOpenAI(temperature=0.9 , model="gpt-3.5-turbo-16k", client=any , openai_api_key=get_api_key("OPENAI"))
 
@@ -80,43 +79,117 @@ def generate_story(prompt, genre, duration):
         
         except Exception as e:
             raise gr.Error("Please select a project first")
+
+        # embedHTML = f'''
+        # <div style="display: flex; flex-direction: column; align-items: center;">
+        #     <h3>{story}</h3>
+        #     <h4>Word Count : {len(story.split())}</h4>
+        # </div>'''
+        # yield embedHTML + '</div>', 
+        return gr.update(value = story , visible=True)
         
-        # <textarea value="{story}">
-        # </textarea>
+    except Exception as e:
+        raise gr.Error("Something went wrong while generating the story. Please try again later.")
+        # traceback_str = ''.join(traceback.format_tb(e.__traceback__))
+        # error_name = type(e).__name__.capitalize()+ " : " +f"{e.args[0]}"
+        # print("Error", traceback_str)
+        # yield embedHTML + '</div>', gr.Button.update(visible=True), gr.update(value=ERROR_TEMPLATE.format(error_message=error_name, stack_trace=traceback_str), visible=True)
+    
+
+def Toggel_ui(assistance_level):
+    if assistance_level == "Use AI to Generate Story":
+        return gr.update(visible=True), gr.update(visible=False) , gr.update(visible=False)
+    elif assistance_level == "Type your Story":
+        return gr.update(visible=False), gr.update(visible=True) , gr.update(visible=False)
+
+def Set_story(story):
+    embedHTML = '<div style="display: flex; overflow-x: auto; gap: 20px;">'
+    try:
+        try:    
+            story = story
+            words = story.split()  # Split the string into a list of words
+            word_list = [' '.join(words[i:i+15]) for i in range(0, len(words), 15)]
+        except Exception as e:
+            raise gr.Error("Something went wrong while generating the story. Please try again later.") 
+
+        try:
+            current_selected_project = get_project_name()
+            if current_selected_project is None:
+                raise gr.Error("Please select a project first")
+            else:
+                json_file_path = f"projects/{current_selected_project}/content.json"
+                if os.path.exists(json_file_path):
+                    with open(json_file_path, "r") as json_file:
+                        existing_data = json.load(json_file)
+
+                # Update the existing data with the new values
+                existing_data["content"] = str(story)
+                existing_data["word_lists"] = str(word_list)    
+                with open(json_file_path, "w") as json_file:
+                    json.dump(existing_data, json_file)
+        
+        except Exception as e:
+            raise gr.Error("Please select a project first")
         embedHTML = f'''
         <div style="display: flex; flex-direction: column; align-items: center;">
-            <h3>
-            {story}
-            </h3>
+            <h3>{story}</h3>
+            <h4>Word Count : {len(story.split())}</h4>
         </div>'''
         yield embedHTML + '</div>', 
-        
     except Exception as e:
         traceback_str = ''.join(traceback.format_tb(e.__traceback__))
         error_name = type(e).__name__.capitalize()+ " : " +f"{e.args[0]}"
         print("Error", traceback_str)
         yield embedHTML + '</div>', gr.Button.update(visible=True), gr.update(value=ERROR_TEMPLATE.format(error_message=error_name, stack_trace=traceback_str), visible=True)
-    
+        
+def get_story():
+    try:
+        current_selected_project = get_project_name()
+        if current_selected_project is None:
+            raise gr.Error("Please select a project first")
+        else:
+            json_file_path = f"projects/{current_selected_project}/content.json"
+            if os.path.exists(json_file_path):
+                with open(json_file_path, "r") as json_file:
+                    existing_data = json.load(json_file)
+                    story = existing_data["content"]
+                    return story
+    except Exception as e:
+        raise gr.Error("Please select a project first")
 
 
 def story_generation_ui(StoryBlocksUI: gr.Blocks):
     with gr.Tab("Generate Story") as  story_generation:
         gr.Markdown("## Generate Story") 
         with gr.Row(visible=True):
-            with gr.Column():
-                assistance = gr.Radio(["AI Generated Story","Custom Story"], label="Type of story generated", value="AI Generated Story", interactive=True)
-                prompt = gr.Textbox(label="Prompt", lines=5, placeholder="Write a prompt for your story", interactive=True , visible=True)
-                # story = gr.Textbox(label="Custom Story", lines=10, placeholder="Write your Custom Story", interactive=True , visible=False)
-                # assistance.change(lambda x: (gr.update(visible= x == assistance.choices[0]), gr.update(visible= x == assistance.choices[1])), [assistance], [prompt, story])
-                genre = gr.Textbox(label="Genre", placeholder="Write a genre for your story", interactive=True, visible=True)
-                duration = gr.Slider(minimum=0, maximum=2, step=.2, label="Duration in minutes", value=1, interactive=True, visible=True)
-                # language = gr.Radio(language_choices, label="Language", value="ENGLISH")
-                generate_story_button = gr.Button("Generate Story", size="sm", interactive=True, visible=True)
+            with gr.Column(visible=True):
+                assistance = gr.Radio(["Use AI to Generate Story","Type your Story"], label="Type of story generated", interactive=True)
+                with gr.Column(visible=False) as story_generation_column:
+                    prompt = gr.Textbox(label="Prompt", lines=5, placeholder="Write a prompt for your story", interactive=True , visible=True)
+                    genre = gr.Textbox(label="Genre", placeholder="Write a genre for your story", interactive=True, visible=True)
+                    duration = gr.Slider(minimum=0, maximum=120, step=1, label="Duration in seconds", value=60, interactive=True, visible=True)
+                    number_of_words = gr.Textbox(label="Number of words", placeholder=150, visible=True)
+                    duration.change(lambda x: gr.update(value=float(x*150/60)), [duration], [number_of_words])
+                    generate_story_button = gr.Button("Generate Story", size="sm", interactive=True, visible=True) 
+                
+                with gr.Column(visible=False) as edit_generation_column:
+                    edit_story = gr.Textbox(label="Edit Story" ,lines=10, value=get_story(),interactive=True , visible=True)
+                    set_edited_story_button = gr.Button("Set Story", size="sm", interactive=True, visible=True)
+                
+                with gr.Column(visible=False) as custom_story_column:    
+                    story = gr.Textbox(label="Custom Story", lines=10, placeholder="Write your Custom Story", interactive=True , visible=True)
+                    set_story_button = gr.Button("Set Story", size="sm", interactive=True, visible=True)
                 
                 generation_error = gr.HTML(visible=False)
                 output = gr.HTML()
 
-                generate_story_button.click(inspect_create_inputs, inputs=[prompt, genre, duration] , outputs=[generation_error]).success(generate_story, inputs=[prompt, genre, duration] , outputs=[output])
+                assistance.change(Toggel_ui, inputs=[assistance], outputs=[story_generation_column, custom_story_column , edit_generation_column])
+                generate_story_button.click(inspect_create_inputs, inputs=[prompt, genre, duration] , outputs=[generation_error]).success(lambda : gr.update(visible=True) , outputs=[edit_generation_column]).success(generate_story, inputs=[prompt, genre, duration] , outputs=[edit_story])
+                set_edited_story_button.click(Set_story, inputs=[edit_story] , outputs=[output])
+                set_story_button.click(Set_story, inputs=[story] , outputs=[output])
+                
+                # assistance.change(lambda x: (gr.update(visible= x == assistance.choices[0]), gr.update(visible= x == assistance.choices[1]), gr.update(visible= x == genre)), [assistance], [prompt, story, genre])
+
     return story_generation
 
 def inspect_create_inputs(
@@ -124,7 +197,6 @@ def inspect_create_inputs(
     genre,
     duration,
     ):
-    
     if not prompt:
         raise gr.Error("Please write down your story's prompt")
     if not genre:
