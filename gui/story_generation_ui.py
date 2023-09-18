@@ -154,6 +154,8 @@ def get_story():
                     existing_data = json.load(json_file)
                     story = existing_data["content"]
                     return story
+            else:
+                return ""
     except Exception as e:
         raise gr.Error("Please select a project first")
 
@@ -173,7 +175,7 @@ def story_generation_ui(StoryBlocksUI: gr.Blocks):
                     generate_story_button = gr.Button("Generate Story", size="sm", interactive=True, visible=True) 
                 
                 with gr.Column(visible=False) as edit_generation_column:
-                    edit_story = gr.Textbox(label="Edit Story" ,lines=10, value=get_story(),interactive=True , visible=True)
+                    edit_story = gr.Textbox(label="Edit Story" ,lines=10, value="",interactive=True , visible=True)
                     set_edited_story_button = gr.Button("Set Story", size="sm", interactive=True, visible=True)
                 
                 with gr.Column(visible=False) as custom_story_column:    
