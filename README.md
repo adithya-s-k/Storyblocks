@@ -37,12 +37,15 @@ To use Story Blocks, simply provide a text prompt and watch as the project gener
 -   [x] Add Colab notebook
 -   [x] Add Gradio
 -   [x] Project Creation and Section
--   [ ] Implement Story Generation on Gradio
+-   [x] Implement Story Generation on Gradio
+-   [x] Add Audio Generation using ElevenLabs
+-   [x] Add Audio generation using pyttx3
+-   [ ] Add SDXL Model for Image Generation locally
 -   [ ] Add proper Subtitles support
 -   [ ] Add Support for other image generation models (from Stability AI)
 -   [ ] Add support for flashcards
 -   [ ] prompts optimization
--   [ ]Become Automatic1111 agnostic
+-   [ ] Become Automatic1111 agnostic
 
 ## 🌟 Show Your Support
 
