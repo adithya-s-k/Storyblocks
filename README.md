@@ -24,24 +24,39 @@ So, are you ready to embark on a storytelling adventure like no other? Join us a
 ## Example
 
 <table>
-  <tr>
-     <td>
+<tr><td>
         The Very First Video I generated manually:
         <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/91e4f93c-b10a-44f0-957c-5d2082093de7">
-        <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/35d4c428-a75d-48d2-9298-a1dd67b5e4dd">
-         <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/8c69ba32-82cc-4e6c-92cd-3e547b47acb5">
-     </td>
+        </td>
     <td>
         Automated Video Generation:
-           <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/133321c2-aa9b-4eac-8466-ff137edfc3e4">
-           <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/eb46f8d7-f189-4960-84ad-75237e5fb627">
-         <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/87aebb48-7f8e-4894-8126-9807c5a87ac4">
+        <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/133321c2-aa9b-4eac-8466-ff137edfc3e4">
     </td>
     <td>
         Avatar Narration:
         <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/0831bc6f-f772-4337-baa3-57a76f2ba0fb">
     </td>
-  </tr>
+
+    </tr>
+    <tr>
+    <td>
+        <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/35d4c428-a75d-48d2-9298-a1dd67b5e4dd">
+    </td>
+    <td>
+        <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/eb46f8d7-f189-4960-84ad-75237e5fb627">
+
+    </td>
+
+    </tr>
+    <tr>
+    <td>
+        <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/8c69ba32-82cc-4e6c-92cd-3e547b47acb5">
+    </td>
+    <td>
+        <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/87aebb48-7f8e-4894-8126-9807c5a87ac4">
+    </td>
+    </tr>
+
 </table>
 
 <!-- Storyblock-V1
