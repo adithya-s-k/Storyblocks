@@ -1,6 +1,18 @@
 # Story Blocks
 
-Story Blocks is an open-source project that utilizes generative AI to transform text into visual narratives. By combining OpenAI's text generation model and Stable Diffusion(Automatic1111) with LORA for image synthesis, this project allows users to explore new frontiers of storytelling.
+Welcome to **Story Blocks** - Your Gateway to Extraordinary Storytelling!
+
+## What is Story Blocks?
+
+Story Blocks is not just a project; it's a realm of boundless creativity and limitless storytelling possibilities. With the magic of generative AI at our fingertips, we bring you a world of possibilities:
+
+-   📽️ **Generate Storytelling Videos**: Craft captivating narratives brought to life with stunning visuals.
+-   👤 **Avatar Narration Videos**: Let avatars narrate your tales, giving them a unique personality and voice.
+-   📚 **Flashcards Books**: Create educational flashcards and books in a breeze.
+
+And that's just the beginning! Our journey is marked by innovation, and our future holds even more exciting features.
+
+So, are you ready to embark on a storytelling adventure like no other? Join us and unlock the power of imagination with Story Blocks!
 
 ## [One Click Run Google Colab](https://colab.research.google.com/github/adithya-s-k/Storyblocks/blob/main/Storyblocks.ipynb)
 
@@ -11,11 +23,46 @@ Story Blocks is an open-source project that utilizes generative AI to transform 
 
 ## Example
 
-Input Prompt : Boy going to the moon
+<table>
+  <tr>
+     <td>
+        The Very First Video I generated manually:
+        <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/91e4f93c-b10a-44f0-957c-5d2082093de7">
+        <!-- <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/35d4c428-a75d-48d2-9298-a1dd67b5e4dd"> -->
+         <!-- <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/8c69ba32-82cc-4e6c-92cd-3e547b47acb5"> -->
+     </td>
+    <td>
+        Automated Video Generation:
+           <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/133321c2-aa9b-4eac-8466-ff137edfc3e4">
+           <!-- <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/eb46f8d7-f189-4960-84ad-75237e5fb627"> -->
+         <!-- <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/87aebb48-7f8e-4894-8126-9807c5a87ac4"> -->
+    </td>
+    <td>
+        Avatar Narration:
+        <video width=100% src="https://github.com/adithya-s-k/Storyblocks/assets/27956426/0831bc6f-f772-4337-baa3-57a76f2ba0fb">
+    </td>
+  </tr>
+</table>
 
-https://github.com/adithya-s-k/Storyblocks/assets/27956426/9ba3e564-a78b-47a7-a845-6f5155d44fbd
+<!-- Storyblock-V1
 
-https://github.com/adithya-s-k/Storyblocks/assets/27956426/17864858-0eea-49a7-9299-d36f6bf6a01a
+https://github.com/adithya-s-k/Storyblocks/assets/27956426/91e4f93c-b10a-44f0-957c-5d2082093de7
+
+https://github.com/adithya-s-k/Storyblocks/assets/27956426/35d4c428-a75d-48d2-9298-a1dd67b5e4dd
+
+https://github.com/adithya-s-k/Storyblocks/assets/27956426/8c69ba32-82cc-4e6c-92cd-3e547b47acb5
+
+Storyblock-V2-subtitle
+
+https://github.com/adithya-s-k/Storyblocks/assets/27956426/133321c2-aa9b-4eac-8466-ff137edfc3e4
+
+https://github.com/adithya-s-k/Storyblocks/assets/27956426/eb46f8d7-f189-4960-84ad-75237e5fb627
+
+https://github.com/adithya-s-k/Storyblocks/assets/27956426/87aebb48-7f8e-4894-8126-9807c5a87ac4
+
+Avatar Narration
+
+https://github.com/adithya-s-k/Storyblocks/assets/27956426/0831bc6f-f772-4337-baa3-57a76f2ba0fb -->
 
 ## Features
 
