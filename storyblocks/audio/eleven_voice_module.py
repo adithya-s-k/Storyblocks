@@ -1,5 +1,6 @@
 from storyblocks.api_utils.eleven_api import generateVoice, getCharactersFromKey
 from storyblocks.audio.voice_module import VoiceModule
+from storyblocks.config.project_db import get_project_name, set_project_name
 
 class ElevenLabsVoiceModule(VoiceModule):
     def __init__(self, api_key, voiceName):
@@ -18,9 +19,9 @@ class ElevenLabsVoiceModule(VoiceModule):
     def get_remaining_characters(self):
         return self.remaining_credits if self.remaining_credits else getCharactersFromKey(self.api_key)
 
-    def generate_voice(self, text, outputfile):
+    def generate_voice(self, text, project_name):
         if self.get_remaining_characters() >= len(text):
-            file_path = generateVoice(text=text, character=self.voiceName, fileName=outputfile, api_key=self.api_key)
+            file_path = generateVoice(text=text, character=self.voiceName, api_key=self.api_key , project=project_name)
             self.update_usage()
             return file_path
         else:

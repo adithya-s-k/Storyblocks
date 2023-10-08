@@ -12,5 +12,5 @@ class VoiceModule(ABC):
         pass
 
     @abstractmethod
-    def generate_voice(self,text, outputfile):
+    def generate_voice(self,text, project_name):
         pass

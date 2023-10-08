@@ -29,7 +29,7 @@ def getCharactersFromKey(key):
 
 
 
-def generateVoice(text, character, fileName, stability=0.2, clarity=0.1, api_key=""):
+def generateVoice(text, character, project, stability=0.2, clarity=0.1, api_key=""):
     if not api_key:
         raise Exception("No api key")
     charactersDict = getVoices(api_key)
@@ -51,9 +51,9 @@ def generateVoice(text, character, fileName, stability=0.2, clarity=0.1, api_key
     })
     response = requests.post(url, headers=headers, data=data)
     if(response.status_code == 200):
-        with open(fileName, 'wb') as f:
+        with open(f"projects/{project}/audio.mp3", 'wb') as f:
             f.write(response.content)
-            return fileName
+            return f"projects/{project}/audio.mp3"
     else:
         message = response.text
         print(f'Error in response, {response.status_code} , message: {message}')
