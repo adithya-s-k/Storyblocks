@@ -44,9 +44,10 @@ def Update_projects_list(name):
 
 # Function to get the current project
 def get_current_project():
-    if get_project_name() not in os.listdir("projects"):
-        set_project_name("")
-        return ""
+    set_project_name("")
+    # if get_project_name() not in os.listdir("projects"):
+    #     set_project_name("")
+    #     return ""
     return get_project_name()
 
 # Function to delete a project
@@ -79,7 +80,9 @@ def select_project_ui(StoryBlocksUI: gr.Blocks):
                 create_project_button = gr.Button(f"{folder_symbol} Create Project", interactive=True, visible=True , size="lg" )
             with gr.Column():
                 # Get a list of existing projects
-                existing_projects = os.listdir("projects")
+                # existing_projects = os.listdir("projects")
+                existing_projects = ["Hello"]
+                
                 # Dropdown to select an existing project
                 existing_projects_options = gr.Dropdown(existing_projects, label="Select Existing Project",)
                 # Function to handle selecting an existing project

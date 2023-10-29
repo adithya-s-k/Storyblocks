@@ -27,8 +27,8 @@ def generate_clicked(*args):
     adm_scaler_end = 0.3
     refiner_swap_method = 'joint'
     adaptive_cfg = 7.0
-    sampler_name=modules.path.default_sampler
-    scheduler_name=modules.path.default_scheduler
+    sampler_name=image_generator.modules.path.default_sampler
+    scheduler_name=image_generator.modules.path.default_scheduler
     # The default values for sampler_name and scheduler_name are not provided in the code snippet.
     overwrite_step = -1
     overwrite_switch = -1
@@ -63,7 +63,7 @@ def generate_clicked(*args):
 
     worker.outputs = []
 
-    yield gr.update(visible=True, value=modules.html.make_progress_html(1, 'Initializing ...')), \
+    yield gr.update(visible=True, value=image_generator.modules.html.make_progress_html(1, 'Initializing ...')), \
         gr.update(visible=True, value=None), \
         gr.update(visible=False, value=None), \
         gr.update(visible=False)
@@ -77,7 +77,7 @@ def generate_clicked(*args):
             flag, product = worker.outputs.pop(0)
             if flag == 'preview':
                 percentage, title, image = product
-                yield gr.update(visible=True, value=modules.html.make_progress_html(percentage, title)), \
+                yield gr.update(visible=True, value=image_generator.modules.html.make_progress_html(percentage, title)), \
                     gr.update(visible=True, value=image) if image is not None else gr.update(), \
                     gr.update(), \
                     gr.update(visible=False)
@@ -100,31 +100,30 @@ def generate_clicked(*args):
 
 reload_javascript()
 
-
-def Automatic1111API(StoryBlocksUI: gr.Blocks):
-    with gr.Row(visible=False) as automatic1111_api:
-        with gr.Column():
-            gr.Markdown("## Automatic1111 API")
-            gr.Markdown("### Coming Soon")
-    return automatic1111_api
-
-def SDXLLocal(StoryBlocksUI: gr.Blocks):
-    with gr.Row(visible=False) as sdxl_local:
-        with gr.Column():
-            gr.Markdown("## SDXL Local")
+def image_generation_ui(StoryBlocksUI: gr.Blocks):
+    with gr.Tab("Generate Images") as image_generation_ui:
+        gr.Markdown("## Generate Image")
+        # image_generator_option = gr.Radio(["Automatic1111 API", "SDXL Local" , "Stability AI API"], label="Choose an image generator")
+        
+        # automatic1111_api = Automatic1111API(StoryBlocksUI)
+        # sdxl_local = SDXLLocal(StoryBlocksUI)
+        # stability_ai_api = StabilityAIAPI(StoryBlocksUI)
+        
+        # generate_image_button = gr.Button("Generate Images", size="sm", interactive=True, visible=True)
+        # image_generator_option.change(lambda x: (gr.update(visible= x == image_generator_option.choices[0]), gr.update(visible= x == image_generator_option.choices[1]), gr.update(visible= x == image_generator_option.choices[2])), [image_generator_option], [automatic1111_api , sdxl_local ,stability_ai_api ]) # type: ignore
         with gr.Row():
             with gr.Column(scale=2):
                 with gr.Row():
                     progress_window = grh.Image(label='Preview', show_label=True, height=640, visible=False)
                     progress_gallery = gr.Gallery(label='Finished Images', show_label=True, object_fit='contain', height=640, visible=False)
-                progress_html = gr.HTML(value=modules.html.make_progress_html(32, 'Progress 32%'), visible=False, elem_id='progress-bar', elem_classes='progress-bar')
+                progress_html = gr.HTML(value=image_generator.modules.html.make_progress_html(32, 'Progress 32%'), visible=False, elem_id='progress-bar', elem_classes='progress-bar')
                 gallery = gr.Gallery(label='Gallery', show_label=False, object_fit='contain', height=745, visible=True, elem_classes='resizable_area')
                 with gr.Row(elem_classes='type_row'):
                     with gr.Column(scale=17):
                         prompt = gr.Textbox(show_label=False, placeholder="Type prompt here.",
-                                            container=False, autofocus=True, elem_classes='type_row', lines=1024)
+                                            container=False, autofocus=True, elem_classes='type_row')
 
-                        default_prompt = modules.path.default_prompt
+                        default_prompt = image_generator.modules.path.default_prompt
                         if isinstance(default_prompt, str) and default_prompt != '':
                             shared.gradio_root.load(lambda: default_prompt, outputs=prompt)
 
@@ -148,7 +147,7 @@ def SDXLLocal(StoryBlocksUI: gr.Blocks):
                         stop_button.click(stop_clicked, outputs=[skip_button, stop_button], queue=False, _js='cancelGenerateForever')
                         skip_button.click(skip_clicked, queue=False)
                 with gr.Row(elem_classes='advanced_check_row'):
-                    advanced_checkbox = gr.Checkbox(label='Advanced', value=modules.path.default_advanced_checkbox, container=False, elem_classes='min_check')
+                    advanced_checkbox = gr.Checkbox(label='Advanced', value=image_generator.modules.path.default_advanced_checkbox, container=False, elem_classes='min_check')
 
                 def update_default_image(x):
                     global default_image
@@ -162,15 +161,15 @@ def SDXLLocal(StoryBlocksUI: gr.Blocks):
                     global default_image
                     default_image = None
                     return
-            with gr.Column(scale=1, visible=modules.path.default_advanced_checkbox) as advanced_column:
+            with gr.Column(scale=1, visible=True) as advanced_column:
                 with gr.Tab(label='Setting'):
                     performance_selection = gr.Radio(label='Performance', choices=['Speed', 'Quality'], value='Speed')
-                    aspect_ratios_selection = gr.Radio(label='Aspect Ratios', choices=modules.path.available_aspect_ratios,
-                                                    value=modules.path.default_aspect_ratio, info='width × height')
-                    image_number = gr.Slider(label='Image Number', minimum=1, maximum=32, step=1, value=modules.path.default_image_number)
+                    aspect_ratios_selection = gr.Radio(label='Aspect Ratios', choices=image_generator.modules.path.available_aspect_ratios,
+                                                    value=image_generator.modules.path.default_aspect_ratio, info='width × height')
+                    image_number = gr.Slider(label='Image Number', minimum=1, maximum=32, step=1, value=image_generator.modules.path.default_image_number)
                     negative_prompt = gr.Textbox(label='Negative Prompt', show_label=True, placeholder="Type prompt here.",
                                                 info='Describing what you do not want to see.', lines=2,
-                                                value=modules.path.default_prompt_negative)
+                                                value=image_generator.modules.path.default_prompt_negative)
                     seed_random = gr.Checkbox(label='Random', value=True)
                     image_seed = gr.Textbox(label='Seed', value=0, max_lines=1, visible=False) # workaround for https://github.com/gradio-app/gradio/issues/5354
 
@@ -196,29 +195,29 @@ def SDXLLocal(StoryBlocksUI: gr.Blocks):
                 with gr.Tab(label='Style'):
                     style_selections = gr.CheckboxGroup(show_label=False, container=False,
                                                         choices=legal_style_names,
-                                                        value=modules.path.default_styles,
+                                                        value=image_generator.modules.path.default_styles,
                                                         label='Image Style')
                 with gr.Tab(label='Model'):
                     with gr.Row():
-                        base_model = gr.Dropdown(label='Base Model (SDXL only)', choices=modules.path.model_filenames, value=modules.path.default_base_model_name, show_label=True)
-                        refiner_model = gr.Dropdown(label='Refiner (SDXL or SD 1.5)', choices=['None'] + modules.path.model_filenames, value=modules.path.default_refiner_model_name, show_label=True)
+                        base_model = gr.Dropdown(label='Base Model (SDXL only)', choices=image_generator.modules.path.model_filenames, value=image_generator.modules.path.default_base_model_name, show_label=True)
+                        refiner_model = gr.Dropdown(label='Refiner (SDXL or SD 1.5)', choices=['None'] + image_generator.modules.path.model_filenames, value=image_generator.modules.path.default_refiner_model_name, show_label=True)
                     with gr.Accordion(label='LoRAs', open=True):
                         lora_ctrls = []
                         for i in range(5):
                             with gr.Row():
-                                lora_model = gr.Dropdown(label=f'SDXL LoRA {i+1}', choices=['None'] + modules.path.lora_filenames, value=modules.path.default_lora_name if i == 0 else 'None')
-                                lora_weight = gr.Slider(label='Weight', minimum=-2, maximum=2, step=0.01, value=modules.path.default_lora_weight)
+                                lora_model = gr.Dropdown(label=f'SDXL LoRA {i+1}', choices=['None'] + image_generator.modules.path.lora_filenames, value=image_generator.modules.path.default_lora_name if i == 0 else 'None')
+                                lora_weight = gr.Slider(label='Weight', minimum=-2, maximum=2, step=0.01, value=image_generator.modules.path.default_lora_weight)
                                 lora_ctrls += [lora_model, lora_weight]
                     with gr.Row():
                         model_refresh = gr.Button(label='Refresh', value='\U0001f504 Refresh All Files', variant='secondary', elem_classes='refresh_button')
                 with gr.Tab(label='Advanced'):
                     sharpness = gr.Slider(label='Sampling Sharpness', minimum=0.0, maximum=30.0, step=0.001, value=2.0,
                                         info='Higher value means image and texture are sharper.')
-                    guidance_scale = gr.Slider(label='Guidance Scale', minimum=1.0, maximum=30.0, step=0.01, value=modules.path.default_cfg_scale,
+                    guidance_scale = gr.Slider(label='Guidance Scale', minimum=1.0, maximum=30.0, step=0.01, value=image_generator.modules.path.default_cfg_scale,
                                         info='Higher value means style is cleaner, vivider, and more artistic.')
                     refiner_switch = gr.Slider(label='Refiner Switch At', minimum=0.0, maximum=1.0, step=0.0001,
                                             info='When to switch from base model to the refiner (if refiner is used).',
-                                            value=modules.path.default_refiner_switch)
+                                            value=image_generator.modules.path.default_refiner_switch)
 
                     # gr.HTML('<a href="https://github.com/lllyasviel/Fooocus/discussions/117" target="_blank">\U0001F4D4 Document</a>')
                     # dev_mode = gr.Checkbox(label='Developer Debug Mode', value=False, container=False)
@@ -240,10 +239,10 @@ def SDXLLocal(StoryBlocksUI: gr.Blocks):
                     #                                  info='Enabling Fooocus\'s implementation of CFG mimicking for TSNR '
                     #                                       '(effective when real CFG > mimicked CFG).')
                     #         sampler_name = gr.Dropdown(label='Sampler', choices=flags.sampler_list,
-                    #                                    value=modules.path.default_sampler,
+                    #                                    value=image_generator.modules.path.default_sampler,
                     #                                    info='Only effective in non-inpaint mode.')
                     #         scheduler_name = gr.Dropdown(label='Scheduler', choices=flags.scheduler_list,
-                    #                                      value=modules.path.default_scheduler,
+                    #                                      value=image_generator.modules.path.default_scheduler,
                     #                                      info='Scheduler of Sampler.')
 
                     #         overwrite_step = gr.Slider(label='Forced Overwrite of Sampling Step',
@@ -311,11 +310,11 @@ def SDXLLocal(StoryBlocksUI: gr.Blocks):
                     # dev_mode.change(dev_mode_checked, inputs=[dev_mode], outputs=[dev_tools], queue=False)
 
                     def model_refresh_clicked():
-                        modules.path.update_all_model_names()
+                        image_generator.modules.path.update_all_model_names()
                         results = []
-                        results += [gr.update(choices=modules.path.model_filenames), gr.update(choices=['None'] + modules.path.model_filenames)]
+                        results += [gr.update(choices=image_generator.modules.path.model_filenames), gr.update(choices=['None'] + image_generator.modules.path.model_filenames)]
                         for i in range(5):
-                            results += [gr.update(choices=['None'] + modules.path.lora_filenames), gr.update()]
+                            results += [gr.update(choices=['None'] + image_generator.modules.path.lora_filenames), gr.update()]
                         return results
 
                     model_refresh.click(model_refresh_clicked, [], [base_model, refiner_model] + lora_ctrls, queue=False)
@@ -339,28 +338,7 @@ def SDXLLocal(StoryBlocksUI: gr.Blocks):
                                                                 ]) \
                 .then(lambda: (gr.update(visible=True), gr.update(visible=False), gr.update(visible=False)), outputs=[generate_button, stop_button, skip_button]) \
                 # .then(fn=None, _js='playNotification')
-                # .then(advanced_parameters.set_all_advanced_parameters, inputs=adps) \            
-    return sdxl_local
-
-def StabilityAIAPI(StoryBlocksUI: gr.Blocks):
-    with gr.Row(visible=False) as stability_ai_api:
-        with gr.Column():
-            gr.Markdown("## Stability AI API")
-            gr.Markdown("### Coming Soon")
-    return stability_ai_api
-
-def image_generation_ui(StoryBlocksUI: gr.Blocks):
-    with gr.Tab("Generate Images") as image_generation_ui:
-        gr.Markdown("## Generate Image")
-        image_generator_option = gr.Radio(["Automatic1111 API", "SDXL Local" , "Stability AI API"], label="Choose an image generator")
-        
-        automatic1111_api = Automatic1111API(StoryBlocksUI)
-        sdxl_local = SDXLLocal(StoryBlocksUI)
-        stability_ai_api = StabilityAIAPI(StoryBlocksUI)
-        
-        generate_image_button = gr.Button("Generate Images", size="sm", interactive=True, visible=True)
-        image_generator_option.change(lambda x: (gr.update(visible= x == image_generator_option.choices[0]), gr.update(visible= x == image_generator_option.choices[1]), gr.update(visible= x == image_generator_option.choices[2])), [image_generator_option], [automatic1111_api , sdxl_local ,stability_ai_api ]) # type: ignore
-        
+                # .then(advanced_parameters.set_all_advanced_parameters, inputs=adps) \         
     return image_generation_ui
 
 
