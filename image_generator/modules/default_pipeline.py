@@ -6,7 +6,7 @@ import modules.path
 import fcbh.model_management
 import fcbh.latent_formats
 import modules.inpaint_worker
-import fooocus_extras.vae_interpose as vae_interpose
+import image_generator_extras.vae_interpose as vae_interpose
 
 from fcbh.model_base import SDXL, SDXLRefiner
 from modules.expansion import FooocusExpansion

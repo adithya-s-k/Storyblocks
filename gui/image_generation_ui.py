@@ -1,21 +1,23 @@
+from image_generator.python_hijack import *
+
 import gradio as gr
 import random
 import os
 import time
-import shared
-import modules.path
-import modules.html
-import modules.async_worker as worker
-import modules.constants as constants
-import modules.flags as flags
-import modules.gradio_hijack as grh
-import modules.advanced_parameters as advanced_parameters
-import args_manager
+import image_generator.shared
+import image_generator.modules.path
+import image_generator.modules.html
+import image_generator.modules.async_worker as worker
+import image_generator.modules.constants as constants
+import image_generator.modules.flags as flags
+import image_generator.modules.gradio_hijack as grh
+import image_generator.modules.advanced_parameters as advanced_parameters
+# import gui.args_manager
 
-from modules.sdxl_styles import legal_style_names
-from modules.private_logger import get_current_html_path
-from modules.ui_gradio_extensions import reload_javascript
-from modules.auth import auth_enabled, check_auth
+from image_generator.modules.sdxl_styles import legal_style_names
+from image_generator.modules.private_logger import get_current_html_path
+from image_generator.modules.ui_gradio_extensions import reload_javascript
+from image_generator.modules.auth import auth_enabled, check_auth
 
 def generate_clicked(*args):
     # outputs=[progress_html, progress_window, progress_gallery, gallery]
